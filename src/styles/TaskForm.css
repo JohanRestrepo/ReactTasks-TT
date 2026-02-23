@@ -1,5 +1,6 @@
 .tarea-formulario{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -16,9 +17,13 @@
 }
 
 .tarea-boton {
+  width: 300px;
   padding: 16px;
   font-size: 18px;
   font-family: Roboto, sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   border: none;
   border-radius: 0 4px 4px 0;
   cursor: pointer;

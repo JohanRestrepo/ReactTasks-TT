@@ -12,7 +12,7 @@ function TaskForm({agregarTarea}){
             id: uuidv4(),
             title: data.title,
             description: data.description,
-            completed: data.completed,
+            completed: false,
             priority: data.priority
         }
         
@@ -27,9 +27,9 @@ function TaskForm({agregarTarea}){
 
     return (
         <form className='tarea-formulario' onSubmit={handleSubmit(enviar)}>
-            <input className='tarea-input' type='text' placeholder="Ingresa un titulo" {... register("title")}/>
+            <input className='tarea-input' type='text' placeholder="Ingresa un titulo" required {... register("title")}/>
             <textarea className='tarea-input' type='text' placeholder="Ingresa una descripcion" {... register("description")}/>
-            <input className='tarea-input' type='hidden' value="false" {... register("completed")}/>
+            <input className='tarea-input' type='hidden' value={false} {... register("completed")}/>
             <select className='tarea-input' {... register("priority")}>
                 <option value="" disabled>--Seleccione--</option>
                 {
