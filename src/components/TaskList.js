@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/TaskList.css";
 import TaskForm from "./TaskForm";
 import Task from "./Task";
 import Filter from "./Filter";
 
+const tareasIniciales = JSON.parse(localStorage.getItem("tareas")) || [];
+
 function TaskList(){
     
-    const [tareas, setTareas] = useState([]);
-    const [tareasF, setTareasF] = useState([]);
+    const [tareas, setTareas] = useState(tareasIniciales);
+    const [tareasF, setTareasF] = useState(tareasIniciales);
 
     const agregarTarea = tarea => {
         console.log(tarea)
@@ -55,6 +57,10 @@ function TaskList(){
             setTareasF(tareasActualizadas);
         }
     }
+
+    useEffect(() => {
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+    }, [tareas]);
     
     return(
         <>
