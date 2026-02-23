@@ -1,0 +1,35 @@
+h3{
+    color: black;
+    align-items: center;
+}
+
+.filter-boton {
+  width: 100px;
+  height: 35px;
+  padding: 10px;
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  align-items: center;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  text-transform: capitalize;
+}
+
+.all {
+    background-color: gray;
+}
+
+.completed {
+    background-color: green;
+}
+
+.pending {
+    background-color: red;  
+}
+
+.priority {
+    background-color: blue;  
+}

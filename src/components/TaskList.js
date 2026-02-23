@@ -7,6 +7,7 @@ import Filter from "./Filter";
 function TaskList(){
     
     const [tareas, setTareas] = useState([]);
+    const [tareasF, setTareasF] = useState([]);
 
     const agregarTarea = tarea => {
         console.log(tarea)
@@ -14,6 +15,7 @@ function TaskList(){
             tarea.title = tarea.title.trim();
             const tareasActualizadas = [tarea, ...tareas];
             setTareas(tareasActualizadas)
+            setTareasF(tareasActualizadas)
         }
         console.log(tareas)
     }
@@ -26,22 +28,43 @@ function TaskList(){
             return tarea;
         });
         setTareas(tareasActualizadas);
+        setTareasF(tareasActualizadas);
     }
 
     const eliminarTarea = id => {
         const tareasActualizadas = tareas.filter(tarea => tarea.id !== id);
         setTareas(tareasActualizadas);
+        setTareasF(tareasActualizadas);
+    }
+
+    const filtrarTareas = filtro => {
+        if (filtro === 'all'){
+            setTareasF(tareas);
+        }else if(filtro === 'completed'){
+            const tareasActualizadas = tareas.filter(tarea => tarea.completed === true);
+            setTareasF(tareasActualizadas);
+        }else if(filtro === 'pending'){
+            const tareasActualizadas = tareas.filter(tarea => tarea.completed === false);
+            setTareasF(tareasActualizadas);
+        }else if(filtro === 'priority'){
+            const tareashigh = tareas.filter(tarea => tarea.priority === 'high');
+            const tareasmedium = tareas.filter(tarea => tarea.priority === 'medium');
+            const tareaslow = tareas.filter(tarea => tarea.priority === 'low');
+
+            const tareasActualizadas = [...tareashigh, ...tareasmedium, ...tareaslow];
+            setTareasF(tareasActualizadas);
+        }
     }
     
     return(
         <>
             <TaskForm agregarTarea={agregarTarea}/>
             <div>
-                <Filter/>
+                <Filter filtrarTareas={filtrarTareas}/>
             </div>
             <div className='tarea-lista-contenedor'>
                 {
-                    tareas.map((tarea) =>
+                    tareasF.map((tarea) =>
                         <Task
                             key={tarea.id}
                             id={tarea.id} 
